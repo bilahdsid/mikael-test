@@ -2,13 +2,20 @@
 
 namespace App;
 
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use \Illuminate\Auth\MustVerifyEmail;
+Use \Illuminate\Auth\Authenticatable as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Base implements JWTSubject,AuthenticatableContract,AuthorizableContract,CanResetPasswordContract
 {
+
+    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
     use Notifiable;
 
     /**

@@ -19,7 +19,7 @@ class UpdatePostRequest extends BaseRequest
             //
             'title'=>'required|max:25',
             'body'=>'required|max:200',
-            'post_id'=>'required|exists:posts,id'
+            //'post_id'=>'required|exists:posts,id'
         ];
 
     }

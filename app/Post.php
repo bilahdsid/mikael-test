@@ -3,14 +3,12 @@
 namespace App;
 
 use App\Traits\PreMethods;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Mockery\Exception;
 
-class Post extends Model
+class Post extends Base
 {
-    use PreMethods;
-
-
-
     //
     protected $guarded = [];
 
@@ -26,7 +24,13 @@ class Post extends Model
         return $this->belongsToMany(User::class,'post_comments','post_id','user_id')->withTimestamps();
     }
 
-//    public function beforeUpdate(){
-//        return ($this);
-//    }
+    public function beforeDelete()
+    {
+        $created_at = $this->created_at;
+        if($created_at->diffInMinutes(Carbon::now()) >= 60){
+            throw new Exception('One hour is passed');
+        }
+
+    }
+
 }

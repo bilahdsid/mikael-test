@@ -15,23 +15,25 @@ trait PreMethods
         static::creating(function (Model $model) {
             $model->beforeCreate();
         });
-//
-//        static::created(function (Model $model) {
-//            $model->afterCreate($params = []);
-//        });
-//
-//        static::updated(function (Model $model) {
-//            $model->afterUpdate();
-//        });
+
+        static::created(function (Model $model) {
+            $model->afterCreate($params = []);
+        });
+
+        static::updated(function (Model $model) {
+            $model->afterUpdate();
+        });
 
 
         static::updating(function (Model $model) {
             $model->beforeUpdate();
         });
-    }
 
-    public function abc(){
-        return "add";
+        static::deleting(function (Model $model) {
+            $model->beforeDelete();
+        });
+
+
     }
 
 }

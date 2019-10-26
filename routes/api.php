@@ -37,6 +37,7 @@ Route::group([
         Route::post('post/add', 'PostController@add');
         Route::post('posts', 'PostController@getAll');
         Route::post('post/update', 'PostController@update');
+        Route::post('post/delete', 'PostController@delete');
         Route::post('post/like', 'PostController@like');
         Route::post('post/comment', 'PostController@comment');
 
